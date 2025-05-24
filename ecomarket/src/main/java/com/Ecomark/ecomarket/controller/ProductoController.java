@@ -11,7 +11,7 @@ import com.Ecomark.ecomarket.model.Producto;
 import com.Ecomark.ecomarket.service.ProductoService;
 
 @RestController
-@RequestMapping("/api/v1/producto")
+@RequestMapping("/api/v1/productos")
 public class ProductoController {
     @Autowired ProductoService productoService;
 
