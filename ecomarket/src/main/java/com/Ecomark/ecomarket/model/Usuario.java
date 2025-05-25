@@ -1,6 +1,9 @@
 package com.Ecomark.ecomarket.model;
 
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,5 +40,8 @@ public class Usuario {
     private String metodoPago;
 
     private boolean activo = true;
+
+    @OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Rol> roles = new LinkedHashSet<>();
 
 }

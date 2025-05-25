@@ -37,6 +37,9 @@ public class UsuarioService {
     public List<Usuario> findAll(){
         return usuarioRepository.findAll();
     }
+    public Usuario findById(Long id) {
+        return usuarioRepository.findById(id).orElse(null);
+    }
 
     public Usuario autenticar(String email, String contrasena) {
         Usuario usuario = usuarioRepository.findByEmailUsuario(email)
@@ -67,10 +70,7 @@ public class UsuarioService {
     }
 
 
-    public Usuario findById(Long id) {
-        return usuarioRepository.findById(id).orElse(null);
-    }
-
+    
     
     public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);

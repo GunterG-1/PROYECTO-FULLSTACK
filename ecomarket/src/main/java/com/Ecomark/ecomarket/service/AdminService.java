@@ -24,7 +24,7 @@ public class AdminService {
         return usuarioRepository.findAll();
 
     }
-    public Usuario creUsuario(String nombre, String email, String contrasena) {
+    public Usuario crearUsuario(String nombre, String email, String contrasena) {
     if (usuarioRepository.existsByEmailUsuario(email)) {
         throw new RuntimeException("El email ya está en uso");
     }
@@ -43,14 +43,20 @@ public class AdminService {
     public Usuario save(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
-    public void desactivarUsuario(Long id) {
+    public void desactivarActivarUsuario(Long id) {
         Usuario usuario = usuarioRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        usuario.setActivo(false);
+        usuario.setActivo(!usuario.isActivo());
         usuarioRepository.save(usuario);
     }
 
     public void eliminarUsuario(Long id) {
         usuarioRepository.deleteById(id);
 }
+
+    public String findRolByid_rol(Long id_rol) {
+        // Aquí se implementaría la lógica para buscar el rol por su ID
+        // Por ahora, retornamos un mensaje de ejemplo
+        return "Rol encontrado con ID: " + id_rol;
+    }
 }

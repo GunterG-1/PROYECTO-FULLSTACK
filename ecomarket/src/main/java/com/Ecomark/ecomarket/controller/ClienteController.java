@@ -3,16 +3,11 @@ package com.Ecomark.ecomarket.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.Ecomark.ecomarket.model.Devolucion;
 import com.Ecomark.ecomarket.model.Reclamacion;
+import com.Ecomark.ecomarket.model.Rol;
 import com.Ecomark.ecomarket.model.Usuario;
 import com.Ecomark.ecomarket.service.UsuarioService;
 
@@ -22,6 +17,16 @@ public class ClienteController {
 
     @Autowired
     private  UsuarioService usuarioService;
+
+
+    public boolean esAdmin(Usuario usuario) {
+    for (Rol rol : usuario.getRoles()) {
+        if ("ADMIN".equals(rol.getNombre_rol())) {
+            return true;
+        }
+    }
+    return false;
+}
 
      @PostMapping("/registrar")
     public ResponseEntity<Usuario> registrar(@RequestBody Usuario usuario) {
